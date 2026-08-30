@@ -1,0 +1,3 @@
+const jwt=require('jsonwebtoken'); const {User}=require('../models');
+exports.auth=async(req,res,next)=>{try{const token=req.headers.authorization?.split(' ')[1];if(!token)return res.status(401).json({success:false,message:'Authentication required'});const payload=jwt.verify(token,process.env.JWT_SECRET);const user=await User.findById(payload.id);if(!user||!user.active)return res.status(401).json({success:false,message:'Session is no longer valid'});req.user=user;next()}catch{return res.status(401).json({success:false,message:'Invalid or expired session'})}};
+exports.allow=(...roles)=>(req,res,next)=>roles.includes(req.user.role)?next():res.status(403).json({success:false,message:"You don't have permission to perform this action."});
