@@ -1,3 +1,12 @@
+# WorkHub
+
+## Deploy the frontend to Vercel
+
+1. Import this repository into Vercel. The included `vercel.json` configures the Vite build and React Router fallback automatically.
+2. Add the environment variable `VITE_API_URL` with the deployed backend API base URL, including `/api`, for example `https://your-backend.example.com/api`.
+3. Deploy. Set the backend's `CLIENT_URL` to the Vercel deployment URL so API requests are accepted by CORS.
+
+The Express backend is configured for the existing Render deployment in `render.yaml`. Deploy it separately, then use its public URL for `VITE_API_URL`.
 # Jagran WorkHub
 
 An enterprise-oriented internal task and project delivery platform for Dainik Jagran. It uses a React/Vite client, RESTful Express API, MongoDB persistence, JWT authentication, and database-backed operational dashboards.
